@@ -108,8 +108,8 @@ class VorhersageKarte extends HTMLElement {
         .jwerte ha-icon { --mdc-icon-size: 18px; color: var(--state-icon-color, #44739e); }
         .ort { padding: 12px 16px 2px; font-size: 15px; font-weight: 500; color: var(--primary-text-color); }
         .reihe {
-          display: grid; grid-template-columns: minmax(0, 1fr) 40px 64px 66px 76px 22px;
-          column-gap: 4px; padding: 0 8px 0 16px; align-items: stretch;
+          display: grid; grid-template-columns: minmax(84px, 1fr) 34px 46px 56px 72px 18px;
+          column-gap: 3px; padding: 0 6px 0 14px; align-items: stretch;
         }
         .spalten { font-size: 11px; color: var(--secondary-text-color); letter-spacing: 0.3px; padding-top: 6px; padding-bottom: 4px; }
         .spalten > span { text-align: center; align-self: end; }
@@ -117,9 +117,13 @@ class VorhersageKarte extends HTMLElement {
         .tag.ohne { cursor: default; }
         .c { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; line-height: 1.15; min-width: 0; }
         .name { align-items: flex-start; text-align: left; }
-        .name b { font-size: 16px; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+        .name b { font-size: 15px; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
         .name small, .c small { font-size: 11px; color: var(--secondary-text-color); white-space: nowrap; }
-        .sym ha-icon { --mdc-icon-size: 32px; }
+        .sym ha-icon { --mdc-icon-size: 30px; }
+        @media (min-width: 600px) {
+          .reihe { grid-template-columns: minmax(110px, 1fr) 44px 64px 72px 84px 24px; column-gap: 6px; padding: 0 10px 0 16px; }
+          .sym ha-icon { --mdc-icon-size: 34px; }
+        }
         .temp b { font-size: 16px; font-weight: 500; color: var(--primary-text-color); }
         .temp small { font-size: 13px; }
         .wind b, .nied b { font-size: 15px; font-weight: 500; color: var(--primary-text-color); white-space: nowrap; }
