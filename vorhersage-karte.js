@@ -39,6 +39,7 @@ const RICHTUNG = ["N", "NNO", "NO", "ONO", "O", "OSO", "SO", "SSO", "S", "SSW", 
 const WOCHENTAG = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
 
 const zahl = (v, st = 1) => Number(v).toLocaleString("de-DE", { maximumFractionDigits: st, minimumFractionDigits: 0 });
+const grad = (v) => `${Math.round(Number(v)) || 0}°`;
 const tagKey = (d) => `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`;
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -278,7 +279,7 @@ class VorhersageKarte extends HTMLElement {
           <div class="reihe tag${hs.length ? "" : " ohne"}${offen ? " offen" : ""}" data-k="${k}">
             <div class="c name">${this._tagName(t._dt, j)}</div>
             ${this._symbol(t.condition)}
-            <div class="c temp"><b>${t.temperature != null ? zahl(t.temperature, 0) + "°" : "–"}</b>${t.templow != null ? `<small>${zahl(t.templow, 0)}°</small>` : ""}</div>
+            <div class="c temp"><b>${t.temperature != null ? grad(t.temperature) : "–"}</b>${t.templow != null ? `<small>${grad(t.templow)}</small>` : ""}</div>
             ${this._wind(t, false)}
             ${this._niederschlag(t, false)}
             <div class="c pfeil">${hs.length ? `<ha-icon icon="mdi:chevron-down"></ha-icon>` : ""}</div>
@@ -289,7 +290,7 @@ class VorhersageKarte extends HTMLElement {
             <div class="reihe std">
               <div class="c name"><b>${String(dt.getHours()).padStart(2, "0")}:00</b></div>
               ${this._symbol(h.condition)}
-              <div class="c temp"><b>${h.temperature != null ? zahl(h.temperature, 0) + "°" : "–"}</b></div>
+              <div class="c temp"><b>${h.temperature != null ? grad(h.temperature) : "–"}</b></div>
               ${this._wind(h, true)}
               ${this._niederschlag(h, true)}
               <div></div>
